@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis Result</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+        .result-card {
+            margin-top: 50px;
+            border: none;
+        }
+        .result-header {
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+            border-top-left-radius: .25rem;
+            border-top-right-radius: .25rem;
+        }
+        .sentiment-positive {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .sentiment-negative {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .sentiment-neutral {
+            color: #6c757d;
+            font-weight: bold;
+        }
+        .analyze-btn {
+            width: 100%;
+        }
+        .footer {
+            margin-top: 100px;
+            padding: 20px 0;
+            background-color: #e9ecef;
+            text-align: center;
+        }
+        .footer a {
+            text-decoration: none;
+            color: #6c757d;
+        }
+        .footer a:hover {
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Result Card -->
+        <div class="card result-card">
+            <div class="result-header text-center">
+                <h2>Analysis Result</h2>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Input Text</h5>
+                <p class="card-text">{{ text }}</p>
+                <h5 class="card-title">Sentiment</h5>
+                {% if result['label'] == 'POSITIVE' %}
+                    <p class="card-text sentiment-positive">{{ result['label'] }}</p>
+                {% elif result['label'] == 'NEGATIVE' %}
+                    <p class="card-text sentiment-negative">{{ result['label'] }}</p>
+                {% else %}
+                    <p class="card-text sentiment-neutral">{{ result['label'] }}</p>
+                {% endif %}
+                <h5 class="card-title">Confidence Score</h5>
+                <p class="card-text">{{ result['score'] | round(2) }}</p>
+                <a href="/" class="btn btn-secondary analyze-btn mt-4">Analyze Another Text</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
